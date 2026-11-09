@@ -1,0 +1,16 @@
+# Build output
+dist/
+*.zip
+*.crx
+*.pem
+
+# Dependencies (there are none today, keep it that way)
+node_modules/
+
+# Local and OS files
+.DS_Store
+.env
+.env.*
+*.log
+.vscode/
+.idea/

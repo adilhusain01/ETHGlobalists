@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ETHGlobalists</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="head">
+      <img class="logo" src="../icons/icon128.png" alt="" width="44" height="44" />
+      <div>
+        <h1>ETHGlobalists</h1>
+        <p>Winners only, on the ETHGlobal showcase.</p>
+      </div>
+    </header>
+
+    <fieldset class="modes">
+      <legend class="sr">Show on the showcase</legend>
+      <label class="mode">
+        <input type="radio" name="mode" value="off" />
+        <span><b>Everyone</b><small>The showcase as ETHGlobal lists it</small></span>
+      </label>
+      <label class="mode">
+        <input type="radio" name="mode" value="any" />
+        <span><b>Winners</b><small>Any prize: finalists, tracks, sponsor and pool prizes</small></span>
+      </label>
+      <label class="mode">
+        <input type="radio" name="mode" value="finalist" />
+        <span><b>Finalists</b><small>Only the event finalists</small></span>
+      </label>
+      <label class="mode">
+        <input type="radio" name="mode" value="sponsor" />
+        <span><b>Sponsor prizes</b><small>Partner, track and tier prizes</small></span>
+      </label>
+    </fieldset>
+
+    <p class="hint">Your event, partner, category and search filters on the page still apply.</p>
+
+    <a class="key" id="open" href="https://ethglobal.com/showcase" target="_blank" rel="noreferrer">Open the showcase</a>
+
+    <footer class="foot">
+      <a href="https://github.com/adilhusain01/ETHGlobalists" target="_blank" rel="noreferrer">Source on GitHub</a>
+      <span>Not affiliated with ETHGlobal</span>
+    </footer>
+    <script src="core.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,473 @@
+/* ETHGlobalists. Everything is scoped under #ethgl-bar / #ethgl-feed so the showcase's own styles stay untouched. */
+
+/* In a winners mode, the native grid and pager (everything after our feed) step aside. */
+html[data-ethgl-feed] #ethgl-feed ~ * {
+  display: none !important;
+}
+
+html:not([data-ethgl-feed]) #ethgl-feed {
+  display: none !important;
+}
+
+#ethgl-bar,
+#ethgl-feed {
+  --ethgl-ink: #111111;
+  --ethgl-soft: #4a4a4a;
+  --ethgl-muted: #666666;
+  --ethgl-line: #111111;
+  --ethgl-paper: #ffffff;
+  --ethgl-tray: #f1efe9;
+  --ethgl-gold: #a87e36;
+  --ethgl-gold-deep: #7a5a22;
+  --ethgl-ease: cubic-bezier(0.23, 1, 0.32, 1);
+  box-sizing: border-box;
+  font: inherit;
+  color: var(--ethgl-ink);
+}
+
+#ethgl-bar *,
+#ethgl-feed * {
+  box-sizing: border-box;
+}
+
+/* ---------- bar ---------- */
+
+#ethgl-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  margin-top: -16px;
+  width: 100%;
+}
+
+#ethgl-bar .ethgl-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+#ethgl-bar .ethgl-mark,
+#ethgl-bar .ethgl-mark svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+#ethgl-bar .ethgl-seg {
+  display: inline-flex;
+  border: 2px solid var(--ethgl-line);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--ethgl-paper);
+}
+
+#ethgl-bar .ethgl-seg-btn {
+  appearance: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ethgl-ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  min-height: 40px;
+  padding: 0 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 160ms var(--ethgl-ease), color 160ms var(--ethgl-ease);
+}
+
+#ethgl-bar .ethgl-seg-btn + .ethgl-seg-btn {
+  border-left: 2px solid var(--ethgl-line);
+}
+
+#ethgl-bar .ethgl-seg-btn:hover {
+  background: var(--ethgl-tray);
+}
+
+#ethgl-bar .ethgl-seg-btn[aria-checked="true"] {
+  background: var(--ethgl-ink);
+  color: #ffffff;
+}
+
+#ethgl-bar .ethgl-seg-btn:focus-visible {
+  outline: 3px solid var(--ethgl-gold);
+  outline-offset: -5px;
+}
+
+#ethgl-bar .ethgl-status {
+  margin: 0 0 0 auto;
+  font-size: 14px;
+  color: var(--ethgl-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 767px) {
+  #ethgl-bar .ethgl-seg {
+    width: 100%;
+  }
+  #ethgl-bar .ethgl-seg-btn {
+    flex: 1 1 0;
+    padding: 0 6px;
+    font-size: 13px;
+  }
+  #ethgl-bar .ethgl-status {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+/* ---------- feed ---------- */
+
+#ethgl-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  width: 100%;
+}
+
+#ethgl-feed .ethgl-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px 16px;
+}
+
+#ethgl-feed .ethgl-grid:empty {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  #ethgl-feed .ethgl-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  #ethgl-feed .ethgl-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+#ethgl-feed .ethgl-card {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--ethgl-line);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--ethgl-paper);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 180ms var(--ethgl-ease), box-shadow 180ms var(--ethgl-ease);
+}
+
+#ethgl-feed .ethgl-enter {
+  animation: ethgl-in 220ms var(--ethgl-ease) both;
+}
+
+#ethgl-feed .ethgl-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--ethgl-line);
+}
+
+#ethgl-feed .ethgl-card:active {
+  transform: translate(0, 0);
+  box-shadow: 0 0 0 var(--ethgl-line);
+  transition-duration: 80ms;
+}
+
+#ethgl-feed .ethgl-card:focus-visible {
+  outline: 3px solid var(--ethgl-gold);
+  outline-offset: 3px;
+}
+
+#ethgl-feed .ethgl-card {
+  position: relative;
+}
+
+/* Sponsor logos straddle the banner's bottom edge, as on ETHGlobal's cards. */
+#ethgl-feed .ethgl-badges {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  height: 0;
+  padding: 0 24px;
+}
+
+#ethgl-feed .ethgl-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border: 2px solid var(--ethgl-line);
+  border-radius: 50%;
+  background: #ffffff;
+  overflow: hidden;
+  transform: translateY(-50%);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+#ethgl-feed .ethgl-badge + .ethgl-badge {
+  margin-left: -8px;
+}
+
+#ethgl-feed .ethgl-badge img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#ethgl-feed .ethgl-banner {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  border-bottom: 2px solid var(--ethgl-line);
+  background: var(--ethgl-tray);
+  overflow: hidden;
+}
+
+#ethgl-feed .ethgl-banner img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#ethgl-feed .ethgl-banner-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#ethgl-feed .ethgl-initial {
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--ethgl-muted);
+}
+
+#ethgl-feed .ethgl-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+  padding: 16px 24px 20px;
+}
+
+#ethgl-feed .ethgl-name {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: inherit;
+  overflow-wrap: anywhere;
+}
+
+#ethgl-feed .ethgl-tagline {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ethgl-soft);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+#ethgl-feed .ethgl-prizes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+#ethgl-feed .ethgl-prize {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+#ethgl-feed .ethgl-dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--ethgl-gold);
+  transform: translateY(-1px);
+}
+
+#ethgl-feed .ethgl-prize-final .ethgl-prize-text {
+  color: var(--ethgl-gold-deep);
+}
+
+#ethgl-feed .ethgl-prize-more {
+  padding-left: 16px;
+  color: var(--ethgl-muted);
+  font-weight: 500;
+}
+
+#ethgl-feed .ethgl-event {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border: 2px solid var(--ethgl-line);
+  border-radius: 999px;
+  background: #d8b4fe;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1.33;
+}
+
+/* ---------- footer, empty and loading states ---------- */
+
+#ethgl-feed .ethgl-foot:empty {
+  display: none;
+}
+
+#ethgl-feed .ethgl-foot-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px 16px;
+}
+
+#ethgl-feed .ethgl-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  min-height: 420px;
+  padding: 56px 24px;
+  border: 2px dashed #c9c4b8;
+  border-radius: 8px;
+  text-align: center;
+}
+
+#ethgl-feed .ethgl-empty-title {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+#ethgl-feed .ethgl-note {
+  margin: 0;
+  max-width: 34rem;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ethgl-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+#ethgl-feed .ethgl-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#ethgl-feed .ethgl-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+#ethgl-feed .ethgl-btn {
+  appearance: none;
+  margin: 0;
+  border: 2px solid var(--ethgl-line);
+  border-radius: 6px;
+  background: var(--ethgl-paper);
+  color: var(--ethgl-ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  min-height: 44px;
+  padding: 0 20px;
+  cursor: pointer;
+  transition: transform 120ms var(--ethgl-ease), background-color 160ms var(--ethgl-ease);
+}
+
+#ethgl-feed .ethgl-btn:hover {
+  background: var(--ethgl-tray);
+}
+
+#ethgl-feed .ethgl-btn-primary {
+  background: var(--ethgl-ink);
+  color: #ffffff;
+}
+
+#ethgl-feed .ethgl-btn-primary:hover {
+  background: #333333;
+}
+
+#ethgl-feed .ethgl-btn:active {
+  transform: scale(0.97);
+}
+
+#ethgl-feed .ethgl-btn:focus-visible {
+  outline: 3px solid var(--ethgl-gold);
+  outline-offset: 2px;
+}
+
+#ethgl-feed .ethgl-spin {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #d6d2c8;
+  border-top-color: var(--ethgl-ink);
+  border-radius: 50%;
+  animation: ethgl-spin 700ms linear infinite;
+}
+
+@keyframes ethgl-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@keyframes ethgl-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #ethgl-feed .ethgl-card,
+  #ethgl-feed .ethgl-enter {
+    animation: none;
+    transition: none;
+  }
+  #ethgl-feed .ethgl-card:hover {
+    transform: none;
+  }
+  #ethgl-feed .ethgl-spin {
+    animation-duration: 2.4s;
+  }
+  #ethgl-bar .ethgl-seg-btn,
+  #ethgl-feed .ethgl-btn {
+    transition: none;
+  }
+}

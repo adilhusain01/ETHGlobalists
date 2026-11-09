@@ -1,0 +1,11 @@
+{
+  "name": "ethglobalists",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chrome extension that shows only the winners on the ETHGlobal showcase.",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test",
+    "package": "sh scripts/package.sh"
+  }
+}
