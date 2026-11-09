@@ -27,9 +27,9 @@ ETHGlobalists adds a switch under the showcase's search box. Pick Winners and th
 
 Not on the Chrome Web Store yet. Load it unpacked:
 
-1. Download this repo (Code, then Download ZIP) and unzip it, or `git clone https://github.com/adilhusain01/ETHGlobalists.git`.
+1. Download `ethglobalists-1.0.0.zip` from the [latest release](https://github.com/adilhusain01/ETHGlobalists/releases/latest) and unzip it, or `git clone https://github.com/adilhusain01/ETHGlobalists.git`.
 2. Open `chrome://extensions` and turn on Developer mode (top right).
-3. Click Load unpacked and pick the `ETHGlobalists` folder (the one with `manifest.json`).
+3. Click Load unpacked and pick the unzipped folder (the one with `manifest.json` in it).
 4. Open [ethglobal.com/showcase](https://ethglobal.com/showcase) and pick Winners under the search box.
 
 The toolbar icon opens the same switch. It's tested in Chrome; other Chromium browsers load unpacked extensions the same way.
